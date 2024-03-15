@@ -1,0 +1,27 @@
+[init]
+	defaultBranch = main
+
+[commit]
+	gpgsign = true
+
+[user]
+	name = Hugo Gouveia
+	useConfigOnly = true
+
+#[include]
+#	path = ~/.config/git/personal/.gitconfig
+
+[includeIf "gitdir:~/prj/dev/hfg/"]
+	path = ~/.config/git/personal/.gitconfig
+
+[includeIf "gitdir:~/prj/dev/work/"]
+	path = ~/.config/git/work/.gitconfig
+
+[includeIf "gitdir:~/prj/dev/work/irb3"]
+	path = ~/.config/git/irb3/.gitconfig
+
+[includeIf "gitdir:~/prj/dev/work/loft/"]
+	path = ~/.config/git/loft/.gitconfig
+
+[core]
+	editor = nvim

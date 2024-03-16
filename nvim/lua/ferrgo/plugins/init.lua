@@ -1,3 +1,5 @@
+require("ferrgo.plugins.lsp")
+
 return {
     "github/copilot.vim",
     "tpope/vim-fugitive",

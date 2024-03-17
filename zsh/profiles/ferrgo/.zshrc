@@ -69,12 +69,9 @@ bindkey "^[[B" history-beginning-search-forward-end
 
 
 ## P10k Theme
-
 source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/ferrgo/.p10k.zsh.
-[[ ! -f ~/.config/zsh/ferrgo/.p10k.zsh ]] || source ~/.config/zsh/ferrgo/.p10k.zsh
-
-# Plugins
+## Plugins
 [ -f $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-

@@ -24,4 +24,4 @@
 	path = ~/.config/git/loft/.gitconfig
 
 [core]
-	editor = nvim
+    editor = nvim

@@ -1,3 +1,6 @@
+# Plugin by [RobLoach](https://github.com/RobLoach)
+# Originally found @ [Oh-My-Zsh/plugins](https://github.com/ohmyzsh/ohmyzsh/tree/c8ba08581dff43c18c1b0d9e7312ca32e6d97124/plugins/asdf)
+#
 # Find where asdf should be installed
 ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}"
 ASDF_COMPLETIONS="$ASDF_DIR/completions"

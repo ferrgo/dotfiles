@@ -47,8 +47,10 @@ setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 #)
 
 # Completions
-autoload -U compinit; compinit 
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit 
 [ -f $ZDOTDIR/plugins/asdf.plugin.zsh ] && source $ZDOTDIR/plugins/asdf.plugin.zsh
+complete -C 'aws_completer' aws
 
 # History Search
 autoload -Uz history-search-end
@@ -75,3 +77,4 @@ source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 ## Plugins
 [ -f $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh ] && source $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh

@@ -1,5 +1,6 @@
 return {
     "rest-nvim/rest.nvim",
+    version = "1",
     dependencies = { { "nvim-lua/plenary.nvim" } },
     ft = 'http',
     config = function()

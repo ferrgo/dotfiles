@@ -91,6 +91,9 @@ return {
                                         [kubernetes_schema] = "k8s-apps/deployments/**/**/*.yaml",
                                         [loft_cloudify_schema] = ".cloudify/{production,development}/*/*.yaml",
                                     },
+                                    customTags = {
+                                        "!Ref scalar",
+                                    }
                                 },
                             },
                         })

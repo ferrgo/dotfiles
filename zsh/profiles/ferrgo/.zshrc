@@ -50,7 +50,7 @@ setopt PUSHD_IGNORE_DUPS            # Do not store duplicates in the stack.
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit 
 [ -f $ZDOTDIR/plugins/asdf.plugin.zsh ] && source $ZDOTDIR/plugins/asdf.plugin.zsh
-complete -C 'aws_completer' aws
+command -v aws >/dev/null 2>&1 && complete -C 'aws_completer' aws
 
 # History Search
 autoload -Uz history-search-end
@@ -71,7 +71,7 @@ bindkey "^[[B" history-beginning-search-forward-end
 
 
 ## P10k Theme
-source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
+[ -f $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme ] && source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 

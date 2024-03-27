@@ -1,10 +1,6 @@
 return {
-    { import= "ferrgo.plugins.lsp" },
-	{
-		"freddiehaddad/feline.nvim",
-		opts = {},
-	},
-	"github/copilot.vim",	
+	{ import = "ferrgo.plugins.lsp" },
+	"github/copilot.vim",
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",

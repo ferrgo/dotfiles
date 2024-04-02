@@ -11,8 +11,10 @@ return {
             pickers = {
                 find_files = {
                     hidden = true,
+                    path_display = { "smart" },
                 },
                 buffers = {
+                    path_display = { "smart" },
                     mappings = {
                         n = {
                             ["d"] = "delete_buffer",

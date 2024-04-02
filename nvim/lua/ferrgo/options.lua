@@ -29,4 +29,4 @@ vim.opt.signcolumn = "yes:2"
 -- vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80,120"
-vim.opt_local.conceallevel = 2
+vim.opt.conceallevel = 2

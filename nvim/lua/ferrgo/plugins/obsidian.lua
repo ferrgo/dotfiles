@@ -1,4 +1,4 @@
-local defaultVault = "" .. vim.fn.expand "~" .."/deez-notes"
+local defaultVault = "" .. vim.fn.expand "~" .."/Documents/hfg/"
 return {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
@@ -22,5 +22,8 @@ return {
                 path = defaultVault,
             },
         },
+        daily_notes = {
+            folder = "/03-resources/daily-notes/",
+        }
     },
 }

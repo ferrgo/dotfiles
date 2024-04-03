@@ -32,7 +32,7 @@ setopt AUTO_PUSHD                   # Push the current directory visited on the 
 setopt PUSHD_IGNORE_DUPS            # Do not store duplicates in the stack.
 # setopt PUSHD_SILENT                # Do not print the directory stack after pushd or popd.
 
-# key = (
+# key=(
 #    BackSpace  "${terminfo[kbs]}"
 #    Home       "${terminfo[khome]}"
 #    End        "${terminfo[kend]}"
@@ -71,10 +71,16 @@ bindkey "^[[B" history-beginning-search-forward-end
 
 
 ## P10k Theme
-[[ ! -f $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme ]] || source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
+THEMES_FOLDER=$ZDOTDIR/themes
+THEME=$THEMES_FOLDER/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $THEME ]] || source $THEME
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
+EXTERNAL_PLUGINS_FOLDER=$ZDOTDIR/plugins/external
+
 ## Plugins
-[[ ! -f $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ ! -f $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh ]] || source $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
+ZSH_SYNTHAX_HIGHLIGHTING=$EXTERNAL_PLUGINS_FOLDER/zsh-syntax-highlighting.zsh
+ZSH_BETTER_NPM_COMPLETION=$EXTERNAL_PLUGINS_FOLDER/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
+[[ ! -f $ZSH_SYNTHAX_HIGHLIGHTING ]] || source $ZSH_SYNTHAX_HIGHLIGHTING
+[[ ! -f $ZSH_BETTER_NPM_COMPLETION ]] || source $ZSH_BETTER_NPM_COMPLETION

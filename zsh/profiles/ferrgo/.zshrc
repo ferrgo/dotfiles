@@ -67,14 +67,14 @@ bindkey "^[[B" history-beginning-search-forward-end
 
 ## Alias
 
-[ -f $ZDOTDIR/alias.sh ] && source $ZDOTDIR/alias.sh
+[[ ! -f $ZDOTDIR/alias.sh ]] || source $ZDOTDIR/alias.sh
 
 
 ## P10k Theme
-[ -f $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme ] && source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme ]] || source $ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 ## Plugins
-[ -f $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh ] && source $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
+[[ ! -f $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] || source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ ! -f $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh ]] || source $ZDOTDIR/plugins/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh

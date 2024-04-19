@@ -14,8 +14,37 @@ vim.opt.wrap = false
 
 -- vim.opt.swapfile = false
 -- vim.opt.backup = false
--- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
--- vim.opt.undofile = true
+
+-- TODO: Test on Linux
+-- TODO: Test on windows
+--- Check if a file or directory exists in this path
+ExistsFile = function(file)
+   local ok, err, code = os.rename(file, file)
+   if not ok then
+      if code == 13 then
+         -- Permission denied, but it exists
+         return true
+      end
+   end
+   return ok, err
+end
+
+--- Check if a directory exists in this path
+IsDir = function(path)
+   -- "/" works on both Unix and Windows
+   return ExistsFile(path.."/")
+end
+
+-- set undodir as a variable
+local undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- TODO: define permissions
+if not IsDir(undodir) then
+   os.execute("mkdir -m 0700 -p " .. undodir)
+end
+
+vim.opt.undodir = undodir
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
 
 -- vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -30,3 +59,15 @@ vim.opt.signcolumn = "yes:2"
 
 vim.opt.colorcolumn = "80,120"
 vim.opt.conceallevel = 2
+
+vim.opt.pumheight = 8
+
+-- Options for NetRW (file explorer)
+-- noma - no modifiable
+-- nomod - no modified
+-- nu - set number
+-- rnu - relative number
+-- nobl - no buffer list
+-- nowrap - no wrap
+-- ro - read only
+vim.g.netrw_bufsettings = 'noma nomod nu rnu nowrap ro'

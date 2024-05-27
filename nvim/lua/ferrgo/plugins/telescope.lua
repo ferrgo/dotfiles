@@ -7,10 +7,34 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
+		local state = require("telescope.state")
+		local action_state = require("telescope.actions.state")
+
+		local slow_scroll = function(prompt_bufnr, direction)
+			local previewer = action_state.get_current_picker(prompt_bufnr).previewer
+			local status = state.get_status(prompt_bufnr)
+
+			-- Check if we actually have a previewer and a preview window
+			if type(previewer) ~= "table" or previewer.scroll_fn == nil or status.preview_win == nil then
+				return
+			end
+
+			previewer:scroll_fn(1 * direction)
+		end
 		require("telescope").setup({
-            defaults = {
-                layout_strategy = "vertical"
+            mappings = {
+                i = {
+                    ["<C-u>"] = slow_scroll,
+                    ["<C-d>"] = slow_scroll,
+                },
+                n = {
+                    ["<C-u>"] = slow_scroll,
+                    ["<C-d>"] = slow_scroll,
+                },
             },
+			defaults = {
+				layout_strategy = "vertical",
+			},
 			pickers = {
 				find_files = {
 					hidden = true,

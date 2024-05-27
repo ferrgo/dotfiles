@@ -6,7 +6,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "[LSP] Go to previo
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "[LSP] Go to next" })
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "[LSP] Open diagnostic on quickfix list" })
 
-local opts = { noremap = true, silent = true, desc = "[LSP] [LSP] Quickfix" }
+local quick_fix_opts = { noremap = true, silent = true, desc = "[LSP] Quickfix" }
 
 -- Quickfix from [this so ans](https://stackoverflow.com/a/74303272)
 local function quickfix()
@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, opts)
   ]]
 		--
-		vim.keymap.set("n", "<leader>fix", quickfix, opts)
+		vim.keymap.set("n", "<leader>fix", quickfix, quick_fix_opts)
 	end,
 })
 

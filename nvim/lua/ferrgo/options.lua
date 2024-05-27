@@ -15,6 +15,7 @@ vim.opt.wrap = false
 -- vim.opt.swapfile = false
 -- vim.opt.backup = false
 
+-- TODO: Find better place for that
 -- TODO: Test on Linux
 -- TODO: Test on windows
 --- Check if a file or directory exists in this path
@@ -55,7 +56,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes:2"
 -- vim.opt.isfname:append("@-@")
 
--- vim.opt.updatetime = 50
+vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80,120"
 vim.opt.conceallevel = 2
@@ -63,6 +64,7 @@ vim.opt.conceallevel = 2
 vim.opt.pumheight = 8
 
 -- Options for NetRW (file explorer)
+-- (default) noma nomod nonu nowrap ro nobl
 -- noma - no modifiable
 -- nomod - no modified
 -- nu - set number
@@ -70,4 +72,4 @@ vim.opt.pumheight = 8
 -- nobl - no buffer list
 -- nowrap - no wrap
 -- ro - read only
-vim.g.netrw_bufsettings = 'noma nomod nu rnu nowrap ro'
+vim.g.netrw_bufsettings = 'noma nomod nu ro rnu nowrap'

@@ -109,6 +109,7 @@
     time                    # current time
     # =========================[ Line #2 ]=========================
     newline
+    aws_credentials_expiration
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -1655,6 +1656,35 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_aws_credentials_expiration() {
+      if [ -z ${AWS_CREDENTIAL_EXPIRATION+x} ];
+        then return;
+      fi
+      startTimeSeconds=$(date -jf "%Y-%m-%dT%H:%M:%S%z" $(echo ${AWS_CREDENTIAL_EXPIRATION%:*}${AWS_CREDENTIAL_EXPIRATION##*:}) +%s)
+      endTimeSeconds=$(date +%s)
+      diffSeconds="$(($startTimeSeconds-$endTimeSeconds))"
+      d=$((diffSeconds))
+      local isNegative=$((d < 0))
+      local text="$((d % 60))s"
+      if (( d >= 60 || d <= -60 )); then
+        text="$((d / 60 % 60))m$text"
+        if (( d >= 3600 || d <= -3600 )); then
+          text="$((d / 3600 % 24))h$text"
+          if (( d >= 86400 || d <= -86400 )); then
+            text="$((d / 86400))d $text"
+          fi
+        fi
+      fi
+      foreground=$((isNegative ? 160 : 106))
+      icon="" 
+      if (( d <= 0 )); then
+          icon=" $icon"
+      else
+          icon=" $icon"
+      fi
+      p10k segment -i $icon -f $foreground -t $text
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job

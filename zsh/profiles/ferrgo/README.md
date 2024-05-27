@@ -10,4 +10,4 @@ See [plugins](./plugins/)
 - [aws_completer](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html) - AWS CLI completion
 
 ## Themes
-- [powerlevel10k](https://github.com/zsh-users/zsh-syntax-highlighting.git) clone the themeinto the themes directory `themes/powerlevel10k`
+- [powerlevel10k](https://github.com/romkatv/powerlevel10k) clone the themeinto the themes directory `themes/powerlevel10k`

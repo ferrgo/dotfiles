@@ -80,7 +80,7 @@ THEME=$THEMES_FOLDER/powerlevel10k/powerlevel10k.zsh-theme
 EXTERNAL_PLUGINS_FOLDER=$ZDOTDIR/plugins/external
 
 ## Plugins
-ZSH_SYNTHAX_HIGHLIGHTING=$EXTERNAL_PLUGINS_FOLDER/zsh-syntax-highlighting.zsh
+ZSH_SYNTHAX_HIGHLIGHTING=$EXTERNAL_PLUGINS_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_BETTER_NPM_COMPLETION=$EXTERNAL_PLUGINS_FOLDER/zsh-better-npm-completion/zsh-better-npm-completion.plugin.zsh
 [[ ! -f $ZSH_SYNTHAX_HIGHLIGHTING ]] || source $ZSH_SYNTHAX_HIGHLIGHTING
 [[ ! -f $ZSH_BETTER_NPM_COMPLETION ]] || source $ZSH_BETTER_NPM_COMPLETION

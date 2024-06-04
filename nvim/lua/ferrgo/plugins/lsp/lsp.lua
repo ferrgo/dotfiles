@@ -78,7 +78,8 @@ return {
 							"https://backstage.loft.technology/api/techdocs/static/docs/default/component/cloudify/schemas/contract.json"
 						local kubernetes_schema =
 							"https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone/deployment-apps-v1.json"
-                        local sls_schema = "https://raw.githubusercontent.com/lalcebo/json-schema/91c1871843e8346bb87d36a44f1ee06b001279ca/serverless/reference.json"
+						local sls_schema =
+							"https://raw.githubusercontent.com/lalcebo/json-schema/91c1871843e8346bb87d36a44f1ee06b001279ca/serverless/reference.json"
 						lspconfig.yamlls.setup({
 							settings = {
 								yaml = {
@@ -91,7 +92,7 @@ return {
 										-- [url]: [glob]
 										[kubernetes_schema] = "k8s-apps/deployments/**/**/*.yaml",
 										[loft_cloudify_schema] = ".cloudify/{production,development}/*/*.yaml",
-                                        [sls_schema] = "serverless.yml|serverless.yaml",
+										[sls_schema] = "serverless.yml|serverless.yaml",
 									},
 									customTags = {
 										"!Ref scalar",

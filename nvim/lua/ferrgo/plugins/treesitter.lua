@@ -2,6 +2,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
+        -- Folding options that depend on treesitter
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {

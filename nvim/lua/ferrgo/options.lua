@@ -73,3 +73,21 @@ vim.opt.pumheight = 8
 -- nowrap - no wrap
 -- ro - read only
 vim.g.netrw_bufsettings = 'noma nomod nu ro rnu nowrap'
+
+-- Generic options for folding see [treesitter](./plugins/treesitter.lua) for more specific foldin
+-- TODO: Test this
+-- vim.opt.foldtext = ""
+-- vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
+
+-- make zsh files recognized as sh for bash-ls & treesitter
+vim.filetype.add {
+	extension = {
+		zsh = "sh",
+		sh = "sh", -- force sh-files with zsh-shebang to still get sh as filetype
+	},
+	filename = {
+		[".zshrc"] = "sh",
+		[".zshenv"] = "sh",
+	},
+}

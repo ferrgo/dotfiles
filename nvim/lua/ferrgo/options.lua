@@ -78,7 +78,7 @@ vim.g.netrw_bufsettings = 'noma nomod nu ro rnu nowrap'
 -- TODO: Test this
 -- vim.opt.foldtext = ""
 -- vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 1
+vim.opt.foldlevelstart = 3
 
 -- make zsh files recognized as sh for bash-ls & treesitter
 vim.filetype.add {

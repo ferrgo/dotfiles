@@ -2,6 +2,19 @@ return {
 	{ import = "ferrgo.plugins.lsp" },
 	"github/copilot.vim",
 	{
+		"prichrd/netrw.nvim",
+		config = function()
+			require("netrw").setup({
+				use_devicons = true,
+				icons = {
+					symlink = "", -- Symlink icon (directory and file)
+					directory = "", -- Directory icon
+					file = "", -- File icon
+				},
+			})
+		end,
+	},
+	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		init = function()

@@ -1,6 +1,16 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    build = function()
+      if #vim.api.nvim_list_uis() == 0 then
+        -- update sync if running headless
+        vim.cmd.TSUpdateSync()
+      else
+        -- otherwise update async
+        vim.cmd.TSUpdate()
+      end
+    end,
+    lazy = true,
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
         -- Folding options that depend on treesitter
         vim.opt.foldmethod = "expr"
@@ -11,6 +21,7 @@ return {
                 "vimdoc",
                 "javascript",
                 "typescript",
+                "tsx",
                 "lua",
                 "jsdoc",
                 "bash",
@@ -19,7 +30,7 @@ return {
                 "markdown",
             },
             -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
+            sync_install = true,
             -- Automatically install missing parsers when entering buffer
             -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
             auto_install = false,

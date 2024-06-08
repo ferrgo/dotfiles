@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 i3_folder="$HOME/.config/i3"
 i3_config_file="$i3_folder/config"
 i3_config_dir="$i3_folder/config.d"

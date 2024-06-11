@@ -1,6 +1,6 @@
 return {
 	{ import = "ferrgo.plugins.lsp" },
-	"github/copilot.vim",
+--	"github/copilot.vim",
 	{
 		"prichrd/netrw.nvim",
 		config = function()

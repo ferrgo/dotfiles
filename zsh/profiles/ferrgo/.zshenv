@@ -1,17 +1,16 @@
 # Editor
 # Preferred editor for local and remote sessions
 # Remote session may not have nvim
+# Improvement would be to check available editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
 
-
 # GPG TTY
 # GPG on git fails without it
 export GPG_TTY=$(tty)
-
 
 # ZSH History config
 export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
@@ -32,12 +31,8 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 # setopt APPEND_HISTORY            # append to history file
 # setopt HIST_NO_STORE             # Don't store history commands
 
-
 # Secrets
 [ -f $ZDOTDIR/.secrets.env ] && source $ZDOTDIR/.secrets.env
-
-
-
 
 ## ASDF
 # NOT SURE WHY ASDF was needed here
@@ -66,4 +61,3 @@ setopt HIST_VERIFY               # Do not execute immediately upon history expan
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 # export SDKMAN_DIR="$HOME/.sdkman"
 # [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-

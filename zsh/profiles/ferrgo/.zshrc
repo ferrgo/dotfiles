@@ -32,6 +32,7 @@ setopt AUTO_PUSHD                   # Push the current directory visited on the 
 setopt PUSHD_IGNORE_DUPS            # Do not store duplicates in the stack.
 # setopt PUSHD_SILENT                # Do not print the directory stack after pushd or popd.
 
+# TODO: Check how to map all keys for any environment
 # key=(
 #    BackSpace  "${terminfo[kbs]}"
 #    Home       "${terminfo[khome]}"
@@ -66,9 +67,11 @@ bindkey "^[[B" history-beginning-search-forward-end
 # abindkey "${terminfo[kcud1]}" down-line-or-beginning-search # Down
 
 ## Alias
-
 [[ ! -f $ZDOTDIR/alias.sh ]] || source $ZDOTDIR/alias.sh
 
+## Local setup
+## Specific configs related to current environment
+[[ ! -f $ZDOTDIR/local-env-setup.sh ]] || source $ZDOTDIR/local-env-setup.sh
 
 ## P10k Theme
 THEMES_FOLDER=$ZDOTDIR/themes

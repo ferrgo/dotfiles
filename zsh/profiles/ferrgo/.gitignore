@@ -1,3 +1,4 @@
+local-env-setup.sh
 .secrets.env
 .zsh_history
 .zcompdump

@@ -1,5 +1,6 @@
 return {
     { import = "ferrgo.plugins.lsp" },
+    { import = "ferrgo.plugins.learning-tools" },
     "github/copilot.vim",
     {
         "prichrd/netrw.nvim",

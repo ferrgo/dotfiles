@@ -72,8 +72,9 @@ vim.opt.pumheight = 8
 -- nobl - no buffer list
 -- nowrap - no wrap
 -- ro - read only
-vim.g.netrw_bufsettings = 'noma nomod nu ro rnu nowrap'
-
+vim.g.netrw_bufsettings = 'noma nomod nu ro rnu nowrap nobl'
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 25
 -- Generic options for folding see [treesitter](./plugins/treesitter.lua) for more specific foldin
 -- TODO: Test this
 -- vim.opt.foldtext = ""

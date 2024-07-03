@@ -50,7 +50,19 @@ return {
 							capabilities = require("cmp_nvim_lsp").default_capabilities(),
 						})
 					end,
-					-- lua wat?
+					["bashls"] = function()
+						local lspconfig = require("lspconfig")
+						lspconfig.bashls.setup({
+							cmd = { "bash-language-server", "start" },
+							filetypes = { "sh", "bash", "zsh"},
+							root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+							settings = {
+								bash = {
+									filetypes = { "sh", "bash", "zsh" },
+								},
+							},
+						})
+					end, -- lua wat?
 					["lua_ls"] = function()
 						local cmp_lsp = require("cmp_nvim_lsp")
 						local capabilities = vim.tbl_deep_extend(

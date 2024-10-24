@@ -23,3 +23,9 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- "+Y <- yank entire line into "+" register (System clipboard)
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- Quickfix navigation
+vim.keymap.set("n", "[q","<Cmd>cp<CR>",{desc="[Quickfix navigation] Next"})
+vim.keymap.set("n", "]q","<Cmd>cn<CR>",{desc="[Quickfix navigation] Previous"})
+vim.keymap.set("n", "[Q","<Cmd>cr<CR>",{desc="[Quickfix navigation] First"})
+vim.keymap.set("n", "]Q","<Cmd>cla<CR>",{desc="[Quickfix navigation] Last"})

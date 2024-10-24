@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			"n",
 			"<space>wa",
 			vim.lsp.buf.add_workspace_folder,
-			{ buffer = ev.buf, desc = "[LSP] Add a folter to workspace" }
+			{ buffer = ev.buf, desc = "[LSP] Add a folder to workspace" }
 		)
 		vim.keymap.set(
 			"n",

@@ -58,7 +58,9 @@ return {
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[Telescope] Buffers" })
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[Telescope] Help Tags" })
 		-- git ls-files respects .gitignore
-		vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "[Telescope] Git Files" })
+		vim.keymap.set("n", "<leader>gl", builtin.git_files, { desc = "[Telescope] Git Files" })
+		-- git status
+		vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[Telescope] Git status" })
 		-- search input without telescope prompti
 		vim.keymap.set("n", "<leader>ps", function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })

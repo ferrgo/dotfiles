@@ -1,0 +1,9 @@
+[user]
+  email = work@mail.com
+  signingKey = SIGNINGKEY 
+
+[url "git@github.com-work"]
+  insteadOf = git@github.com
+
+[url "git@gitlab.com-work"]
+  insteadOf = git@gitlab.com

@@ -1,8 +1,0 @@
-[user]
-  email = hugo.gouveia@loft.com.br
-  signingKey = 4238C7974D762139
-
-[url "git@github.com-loft"]
-  insteadOf = git@github.com
-[url "git@bitbucket.org-credihome"]
-  insteadOf = git@bitbucket.org

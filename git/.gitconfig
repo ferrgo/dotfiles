@@ -8,20 +8,24 @@
 	name = Hugo Gouveia
 	useConfigOnly = true
 
-#[include]
-#	path = ~/.config/git/personal/.gitconfig
+[includeIf "gitdir:~/src/ws/dev/hfg/"]
+	path = ~/.config/git/personal.gitconfig
 
-[includeIf "gitdir:~/prj/dev/hfg/"]
-	path = ~/.config/git/personal/.gitconfig
-
-[includeIf "gitdir:~/prj/dev/work/"]
-	path = ~/.config/git/work/.gitconfig
-
-[includeIf "gitdir:~/prj/dev/work/irb3"]
-	path = ~/.config/git/irb3/.gitconfig
-
-[includeIf "gitdir:~/prj/dev/work/loft/"]
-	path = ~/.config/git/loft/.gitconfig
+[includeIf "gitdir:~/src/ws/dev/work/"]
+	path = ~/.config/git/work.gitconfig
 
 [core]
     editor = nvim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+    navigate = true  # use n and N to move between diff sections
+    # dark = true      # or light = true, or omit for auto-detection
+    light = true
+
+[merge]
+    conflictstyle = zdiff3

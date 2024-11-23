@@ -1,0 +1,9 @@
+[user]
+  email = constract@mail.com
+  signingKey = SIGNINGKEY 
+
+[url "git@github.com-contract"]
+  insteadOf = git@github.com
+
+[url "git@gitlab.com-contract"]
+  insteadOf = git@gitlab.com

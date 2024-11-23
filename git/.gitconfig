@@ -14,6 +14,9 @@
 [includeIf "gitdir:~/src/ws/dev/work/"]
 	path = ~/.config/git/work.gitconfig
 
+[includeIf "gitdir:~/src/ws/dev/contract/"]
+	path = ~/.config/git/contract.gitconfig
+
 [core]
     editor = nvim
     pager = delta
@@ -24,8 +27,8 @@
 [delta]
     side-by-side = true
     navigate = true  # use n and N to move between diff sections
-    # dark = true      # or light = true, or omit for auto-detection
-    light = true
+    dark = true      # or light = true, or omit for auto-detection
+    # light = true
 
 [merge]
     conflictstyle = zdiff3

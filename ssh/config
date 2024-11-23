@@ -1,0 +1,48 @@
+### This is a sample config file for ssh with multiple hosts and id-files
+# Multiples git ssh files on same server for different context rely on gitconfig setup:
+# Load on gitconfig for the specific project or folders:
+#
+# [url "git@github.com-company01"]
+#  insteadOf = git@github.com
+#
+#  That will enable ssh to match to that alias and use correct keys/configs
+
+### -- PERSONAL/MAIN ACCOUNT --
+
+Host github.com
+  Hostname github.com
+  User ferrgo
+  IdentityFile ~/.ssh/id_file_github
+
+Host gitlab.com
+  Hostname gitlab.com
+  User ferrgo
+  IdentityFile ~/.ssh/id_file_gitlab
+
+### -- COMPANY 01 --
+
+Host github.com-company01
+  Hostname github.com
+  User companyuser
+  IdentityFile ~/.ssh/id_file_company01
+
+### -- WORK --
+
+Host github.com-work
+  Hostname github.com
+  User workuser 
+  IdentityFile ~/.ssh/id_file_workuser_github
+
+Host gitlab.com-work
+  Hostname gitlab.com
+  User workuser
+  IdentityFile ~/.ssh/id_file_workuser_gitlab
+
+### -- GENERAL --
+
+Host *
+  AddKeysToAgent yes
+  IdentitiesOnly yes
+  PreferredAuthentications publickey
+  Compression yes
+  UseKeychain yes

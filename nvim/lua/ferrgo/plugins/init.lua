@@ -1,7 +1,10 @@
 return {
     { import = "ferrgo.plugins.lsp" },
     { import = "ferrgo.plugins.learning-tools" },
-    "github/copilot.vim",
+    {
+        "github/copilot.vim",
+        enabled = false
+    },
     {
         "prichrd/netrw.nvim",
         config = function()

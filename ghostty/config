@@ -1,0 +1,4 @@
+theme = tokyonight
+background-blur-radius = 20
+background-opacity = 0.8
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

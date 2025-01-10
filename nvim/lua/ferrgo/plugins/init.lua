@@ -35,6 +35,24 @@ return {
         -- Optional dependencies
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+        config = function()
+            local oil = require("oil")
+            oil.setup({
+                default_file_explorer = true,
+                columns = {
+                    "icon",
+                    "permissions",
+                    "size",
+                    "mtime",
+                },
+                float = {
+                    max_width = 100,
+                    max_height = 20
+                }
+            })
+            vim.keymap.set("n", "<leader>ll", function() oil.open_float() end, { desc = "Open Oil (floating)" })
+            vim.keymap.set("n", "<leader>ls", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+        end
     },
     {
         "folke/which-key.nvim",

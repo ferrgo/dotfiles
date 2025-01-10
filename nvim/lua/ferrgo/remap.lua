@@ -1,6 +1,7 @@
 vim.g.mapleader=" "
 
-vim.keymap.set("n","<leader>ls", vim.cmd.Ex, {desc="Open current folder in explorer"})
+-- Disabled to use Oil
+-- vim.keymap.set("n","<leader>ls", vim.cmd.Ex, {desc="Open current folder in explorer"})
 
 -- Move highlighted line / block of text in visual mode
 -- Thanks [ThePrimeagen](https://github.com/ThePrimeagen/init.lua/blob/249f3b14cc517202c80c6babd0f9ec548351ec71/lua/theprimeagen/remap.lua#L5-L6)

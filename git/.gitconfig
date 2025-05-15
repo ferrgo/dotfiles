@@ -6,6 +6,10 @@
 	name = Hugo Gouveia
 	useConfigOnly = true
 
+# Context git configs
+[includeIf "gitdir:~/prj/dev/hfg/"]
+	path = ~/.config/git/personal.gitconfig
+
 [includeIf "gitdir:~/src/ws/dev/hfg/"]
 	path = ~/.config/git/personal.gitconfig
 

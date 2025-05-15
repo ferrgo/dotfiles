@@ -43,6 +43,9 @@ if not IsDir(undodir) then
    os.execute("mkdir -m 0700 -p " .. undodir)
 end
 
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
 vim.opt.undodir = undodir
 vim.opt.undofile = true
 vim.opt.undolevels = 10000

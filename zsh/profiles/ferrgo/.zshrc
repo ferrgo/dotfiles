@@ -54,6 +54,9 @@ autoload -Uz compinit && compinit
 [ -f $ZDOTDIR/plugins/asdf.plugin.zsh ] && source $ZDOTDIR/plugins/asdf.plugin.zsh
 command -v aws >/dev/null 2>&1 && complete -C 'aws_completer' aws
 
+# TODO: improve mise setup
+eval "$(~/.local/bin/mise activate zsh)"
+
 # History Search
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end

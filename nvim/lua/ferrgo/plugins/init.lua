@@ -3,7 +3,12 @@ return {
     { import = "ferrgo.plugins.learning-tools" },
     {
         "github/copilot.vim",
-        enabled = false
+        enabled = true,
+        config = function()
+            vim.g.copilot_filetypes = {
+                ["gitcommit"] = true,
+            }
+        end,
     },
     {
         "prichrd/netrw.nvim",
@@ -58,10 +63,13 @@ return {
                     show_hidden = true
                 }
             })
-            vim.keymap.set("n", "<leader>ll", function() oil.open_float() end, { desc = "Open Oil (floating)" })
+            vim.keymap.set("n", "<leader>lcw", function() oil.open_float(vim.fn.getcwd()) end,
+                { desc = "Open Oil (floating) - Current Working Dir" })
+            vim.keymap.set("n", "<leader>ls", function() oil.open_float() end,
+                { desc = "Open Oil (floating) - Current file dir" })
             vim.keymap.set(
                 "n",
-                "<leader>df",
+                "<leader>ldf",
                 function()
                     -- 1. Grab the value from the environment (or use a default)
                     -- TODO: GET Dotfiles_dir exported for env
@@ -73,9 +81,8 @@ return {
                     local prefix = full:match("(.*)/[^/]+/[^/]+$")
                     oil.open_float(prefix)
                 end,
-                { desc = "Open Oil (floating) on Dotfiles" }
-            )
-            vim.keymap.set("n", "<leader>ls", "<Cmd>Oil<CR>", { desc = "Open Oil" })
+                { desc = "Open Oil (floating) - Dotfiles" })
+            vim.keymap.set("n", "<leader>la", "<Cmd>Oil<CR>", { desc = "Open Oil - Current Working Dir" })
         end
     },
     {

@@ -8,6 +8,8 @@ else
   export EDITOR='nvim'
 fi
 
+export MANPAGER='nvim +Man!'
+
 # GPG TTY
 # GPG on git fails without it
 export GPG_TTY=$(tty)

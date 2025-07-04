@@ -39,6 +39,10 @@ return {
             local oil = require("oil")
             oil.setup({
                 default_file_explorer = true,
+                keymaps = {
+                    ["<C-c>"] = false, -- disable the default mapping
+                    ["<ESC>"] = "actions.close",
+                },
                 columns = {
                     "icon",
                     "permissions",
@@ -47,10 +51,30 @@ return {
                 },
                 float = {
                     max_width = 100,
-                    max_height = 20
+                    max_height = 20,
+                    show_hidden = true
+                },
+                view_options = {
+                    show_hidden = true
                 }
             })
             vim.keymap.set("n", "<leader>ll", function() oil.open_float() end, { desc = "Open Oil (floating)" })
+            vim.keymap.set(
+                "n",
+                "<leader>df",
+                function()
+                    -- 1. Grab the value from the environment (or use a default)
+                    -- TODO: GET Dotfiles_dir exported for env
+                    local full = os.getenv("DOTFILES_DIR") or os.getenv("MYVIMRC") or ""
+                    -- 2. Match “everything up to the last two path segments”
+                    --    (.*)  ← as much as possible
+                    --    /[^/]+ ← one “/segment”
+                    --    /[^/]+$ ← another “/segment” at end of string
+                    local prefix = full:match("(.*)/[^/]+/[^/]+$")
+                    oil.open_float(prefix)
+                end,
+                { desc = "Open Oil (floating) on Dotfiles" }
+            )
             vim.keymap.set("n", "<leader>ls", "<Cmd>Oil<CR>", { desc = "Open Oil" })
         end
     },

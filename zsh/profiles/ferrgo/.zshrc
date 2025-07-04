@@ -51,11 +51,13 @@ setopt PUSHD_IGNORE_DUPS            # Do not store duplicates in the stack.
 # Completions
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit 
+
+# TODO: MISE Setup
+[ -f $HOME/.local/bin/mise ] && eval "$($HOME/.local/bin/mise activate zsh)"
+
+# ASDF Plugin
 [ -f $ZDOTDIR/plugins/asdf.plugin.zsh ] && source $ZDOTDIR/plugins/asdf.plugin.zsh
 command -v aws >/dev/null 2>&1 && complete -C 'aws_completer' aws
-
-# TODO: improve mise setup
-eval "$(~/.local/bin/mise activate zsh)"
 
 # History Search
 autoload -Uz history-search-end

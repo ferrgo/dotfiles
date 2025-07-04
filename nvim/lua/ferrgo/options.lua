@@ -36,15 +36,16 @@ IsDir = function(path)
    return ExistsFile(path.."/")
 end
 
+-- TODO: MISE Setup
+-- Prepend mise shims to PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
 -- set undodir as a variable
 local undodir = os.getenv("HOME") .. "/.vim/undodir"
 -- TODO: define permissions
 if not IsDir(undodir) then
    os.execute("mkdir -m 0700 -p " .. undodir)
 end
-
--- Prepend mise shims to PATH
-vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 vim.opt.undodir = undodir
 vim.opt.undofile = true
@@ -56,7 +57,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:3"
 -- vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50

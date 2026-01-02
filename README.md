@@ -9,6 +9,20 @@ To setup neovim, run the following command (assuming you are in the root of the 
 ln -s $(pwd)/nvim ~/.config/nvim
 ```
 
+## [Ghoosty](https://ghostty.org/)
+
+To setup ghostty, run the following command (assuming you are in the root of the repo):
+```bash
+ln -s $(pwd)/ghostty ~/.config/ghostty
+```
+
+## [tmux](https://github.com/tmux/tmux/wiki)
+
+To setup ghostty, run the following command (assuming you are in the root of the repo):
+```bash
+ln -s $(pwd)/tmux ~/.config/tmux
+```
+
 ## [Kitty](https://sw.kovidgoyal.net/kitty/)
 
 To setup kitty, run the following command (assuming you are in the root of the repo):
@@ -27,4 +41,3 @@ Some nice apps to have installed:
 ### MacOS
 
 - [Homebrew](https://brew.sh/)
-- [AeroSpace](https://github.com/nikitabobko/AeroSpace)

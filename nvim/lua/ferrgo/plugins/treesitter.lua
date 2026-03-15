@@ -28,6 +28,7 @@ return {
                 "http",
                 "json",
                 "markdown",
+                "diff",
             },
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = true,

@@ -12,7 +12,9 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
--- vim.opt.swapfile = false
+vim.opt.swapfile = false
+-- vim.opt.autowriteall = true
+-- vim.opt.autowrite = true
 -- vim.opt.backup = false
 
 -- TODO: Find better place for that
@@ -41,7 +43,7 @@ end
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 -- set undodir as a variable
-local undodir = os.getenv("HOME") .. "/.vim/undodir"
+local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 -- TODO: define permissions
 if not IsDir(undodir) then
    os.execute("mkdir -m 0700 -p " .. undodir)

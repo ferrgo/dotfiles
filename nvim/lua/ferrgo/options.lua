@@ -98,3 +98,11 @@ vim.filetype.add {
 		[".zshenv"] = "sh",
 	},
 }
+
+-- Disable vertical scrolling
+-- vim.keymap.set({"n", "i", "v"}, "<ScrollWheelUp>", "<Nop>", {})
+-- vim.keymap.set({"n", "i", "v"}, "<ScrollWheelDown>", "<Nop>", {})
+
+-- Optionally disable horizontal scrolling (e.g. from trackpad gestures)
+vim.keymap.set({"n", "i", "v"}, "<ScrollWheelLeft>", "<Nop>", {})
+vim.keymap.set({"n", "i", "v"}, "<ScrollWheelRight>", "<Nop>", {})

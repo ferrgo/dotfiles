@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+command -v tmux >/dev/null || { echo "tmux not installed"; exit 1; }
 
 usage() {
   echo "Usage: $(basename "$0") -d <directory> [-s <session_name>] [-p code|write] [-a cursor|claude]"
@@ -11,7 +15,6 @@ usage() {
   echo "      write: opens a single write window"
   echo "  -a, --agent cursor|claude    Start an agent window in the session"
   echo "  -h, --help                   Show this help message"
-  exit 1
 }
 
 DIR=""
@@ -44,17 +47,18 @@ while [[ $# -gt 0 ]]; do
         echo "Error: --agent must be 'cursor' or 'claude'"
         exit 1
       fi
-      if [[ "$AGENT" == "cursor" ]]; then
-        AGENT=agent
-      fi
+      AGENT_WINDOW_NAME="agent"
+      AGENT_CMD=$([[ "$AGENT" == "cursor" ]] && echo "agent" || echo "claude")
       shift 2
       ;;
     -h|--help)
       usage
+      exit 0
       ;;
     *)
       echo "Unknown option: $1"
       usage
+      exit 1
       ;;
   esac
 done
@@ -66,7 +70,8 @@ if [[ -z "$DIR" ]]; then
   exit 1
 fi
 
-DIR=$(cd "$DIR" && pwd)
+[[ -d "$DIR" ]] || { echo "Not a directory: $DIR"; exit 1; }
+DIR=$(cd "$DIR" && pwd) || exit 1
 SESSION_NAME="${SESSION_NAME:-$(basename "$DIR")}"
 
 if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
@@ -85,11 +90,15 @@ else
   esac
 
   if [[ -n "$AGENT" ]]; then
-    tmux new-window -t "$SESSION_NAME" -n "$AGENT" -c "$DIR"
-    tmux send-keys -t "$SESSION_NAME:$AGENT" "$AGENT" Enter
+    tmux new-window -t "$SESSION_NAME" -n "$AGENT_WINDOW_NAME" -c "$DIR"
+    tmux send-keys -t "$SESSION_NAME:$AGENT_WINDOW_NAME" "$AGENT_CMD" C-m
   fi
 fi
 
-# Attaching to window 1
-# Default should be the actual workspace, nvim in code and writing profiles
-exec tmux attach-session -t "$SESSION_NAME":1
+TARGET_WINDOW="$PROFILE"  # "code" or "write"
+
+if [[ -n "${TMUX:-}" ]]; then
+  exec tmux switch-client -t "$SESSION_NAME:$TARGET_WINDOW"
+else
+  exec tmux attach-session -t "$SESSION_NAME:$TARGET_WINDOW"
+fi

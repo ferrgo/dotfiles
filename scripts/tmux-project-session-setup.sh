@@ -2,25 +2,44 @@
 
 set -euo pipefail
 
-command -v tmux >/dev/null || { echo "tmux not installed"; exit 1; }
+FATAL_TAG="\033[1;38;5;134mFATAL\033[0m"
+
+command -v gum >/dev/null || { echo -e "$FATAL_TAG gum not installed"; exit 1; }
+command -v tmux >/dev/null || { echo -e "$FATAL_TAG tmux not installed"; exit 1; }
+
+log() {
+    local level="$1"
+    shift
+    # Need to make sure $* are strings since some logs have `-d` for instance and that confuses gum log's own args parsing
+    gum log -l $level -s -- "$*" ##-- "$*" -s -t rfc822 -l "$level"
+}
+
+# log levels: "none","debug","info","warn","error","fatal"
 
 usage() {
-  echo "Usage: $(basename "$0") -d <directory> [-s <session_name>] [-p code|write] [-a cursor|claude]"
-  echo ""
-  echo "Options:"
-  echo "  -d, --directory <dir>        Project directory (required)"
-  echo "  -s, --session <name>         Override session name (default: directory basename)"
-  echo "  -p, --profile code|write     Session profile (default: code)"
-  echo "      code:  opens nvim + shell windows"
-  echo "      write: opens a single write window"
-  echo "  -a, --agent cursor|claude    Start an agent window in the session"
-  echo "  -h, --help                   Show this help message"
+  gum log -s -l info -- "Usage: $(basename "$0") -d <directory> [-s <session_name>] [-p code|write] [-g cursor|claude] [-n]"
+  gum log -s -l info -- ""
+  gum log -s -l info -- "Options:"
+  gum log -s -l info -- "  -d, --directory <dir>        Project directory (required)"
+  gum log -s -l info -- "  -s, --session <name>         Override session name (default: directory basename)"
+  gum log -s -l info -- "  -p, --profile code|write     Session profile (default: code)"
+  gum log -s -l info -- "      code:  opens nvim + shell windows"
+  gum log -s -l info -- "      write: opens a single write window"
+  gum log -s -l info -- "  -a, --attach                 Attach to the session after creating it (default: yes)"
+  gum log -s -l info -- "  -n, --no-attach              Create the session but do not attach to it"
+  gum log -s -l info -- "  -g, --agent cursor|claude    Start an agent window in the session"
+  gum log -s -l info -- "  -h, --help                   Show this help message"
 }
 
 DIR=""
 SESSION_NAME=""
 AGENT=""
+AGENT_WINDOW_NAME=""
+AGENT_CMD=""
 PROFILE="code"
+ATTACH=1
+ATTACH_SET=0
+NO_ATTACH_SET=0
 
 # Parse options
 while [[ $# -gt 0 ]]; do
@@ -36,19 +55,29 @@ while [[ $# -gt 0 ]]; do
     -p|--profile)
       PROFILE="$2"
       if [[ "$PROFILE" != "code" && "$PROFILE" != "write" ]]; then
-        echo "Error: --profile must be 'code' or 'write'"
+        log "error" "--profile must be 'code' or 'write'"
         exit 1
       fi
       shift 2
       ;;
-    -a|--agent)
+    -n|--no-attach)
+      NO_ATTACH_SET=1
+      ATTACH=0
+      shift
+      ;;
+    -a|--attach)
+      ATTACH_SET=1
+      ATTACH=1
+      shift
+      ;;
+    -g|--agent)
       AGENT="$2"
       if [[ "$AGENT" != "cursor" && "$AGENT" != "claude" ]]; then
-        echo "Error: --agent must be 'cursor' or 'claude'"
+        log "error" "--agent must be 'cursor' or 'claude'"
         exit 1
       fi
-      AGENT_WINDOW_NAME="agent"
-      AGENT_CMD=$([[ "$AGENT" == "cursor" ]] && echo "agent" || echo "claude")
+      AGENT_CMD="$AGENT"
+      AGENT_WINDOW_NAME=$([[ "$AGENT" == "cursor" ]] && echo "agent" || echo "$AGENT")
       shift 2
       ;;
     -h|--help)
@@ -56,26 +85,31 @@ while [[ $# -gt 0 ]]; do
       exit 0
       ;;
     *)
-      echo "Unknown option: $1"
+      log "error" "Unknown option: $1"
       usage
       exit 1
       ;;
   esac
 done
 
+if (( ATTACH_SET && NO_ATTACH_SET )); then
+  log "error" "cannot specify both --attach and --no-attach"
+  exit 1
+fi
+
 # Validate required options
 if [[ -z "$DIR" ]]; then
-  echo "Error: -d <directory> is required"
+  log "error" "-d <directory> is required"
   usage
   exit 1
 fi
 
-[[ -d "$DIR" ]] || { echo "Not a directory: $DIR"; exit 1; }
-DIR=$(cd "$DIR" && pwd) || exit 1
+[[ -d "$DIR" ]] || { log "error" "Not a directory: $DIR"; exit 1; }
+DIR=$(cd "$DIR" && pwd)
 SESSION_NAME="${SESSION_NAME:-$(basename "$DIR")}"
 
 if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-  echo "Session '$SESSION_NAME' already exists, attaching..."
+  log "warn" "Session '$SESSION_NAME' already exists."
 else
   case "$PROFILE" in
     code)
@@ -97,8 +131,12 @@ fi
 
 TARGET_WINDOW="$PROFILE"  # "code" or "write"
 
-if [[ -n "${TMUX:-}" ]]; then
-  exec tmux switch-client -t "$SESSION_NAME:$TARGET_WINDOW"
+if (( ATTACH )); then
+  if [[ -n "${TMUX:-}" ]]; then
+    exec tmux switch-client -t "$SESSION_NAME:$TARGET_WINDOW"
+  else
+    exec tmux attach-session -t "$SESSION_NAME:$TARGET_WINDOW"
+  fi
 else
-  exec tmux attach-session -t "$SESSION_NAME:$TARGET_WINDOW"
+  log "info" "Session '$SESSION_NAME' created. Use 'tmux attach-session -t $SESSION_NAME' to attach."
 fi

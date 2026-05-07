@@ -222,7 +222,7 @@ local components = {
 }
 
 return {
-	"freddiehaddad/feline.nvim",
+	"ferrgo/feline.nvim",
 	opts = {},
 	config = function(_, opts)
 		require("feline").setup({

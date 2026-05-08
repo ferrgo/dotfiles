@@ -107,7 +107,7 @@ return {
                     focusable = false,
                     style = "minimal",
                     border = "rounded",
-                    source = "always",
+                    source = true, -- "always",
                     header = "",
                     prefix = "",
                 },

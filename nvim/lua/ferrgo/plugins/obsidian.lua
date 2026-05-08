@@ -52,7 +52,7 @@ return {
                 local slug = title:lower():gsub(" ", "-"):gsub("[^a-z0-9%-]", "")
                 return timestamp .. "-" .. slug
             end
-            return timestamp
+            return timestamp .. ""
         end,
         templates = {
             folder = resourcesDir .. "templates/",

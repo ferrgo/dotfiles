@@ -76,8 +76,8 @@ while [[ $# -gt 0 ]]; do
         log "error" "--agent must be 'cursor' or 'claude'"
         exit 1
       fi
-      AGENT_CMD="$AGENT"
-      AGENT_WINDOW_NAME=$([[ "$AGENT" == "cursor" ]] && echo "agent" || echo "$AGENT")
+      AGENT_WINDOW_NAME="$AGENT"
+      AGENT_CMD=$([[ "$AGENT" == "cursor" ]] && echo "agent" || echo "$AGENT")
       shift 2
       ;;
     -h|--help)

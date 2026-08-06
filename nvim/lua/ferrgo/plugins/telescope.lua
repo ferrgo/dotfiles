@@ -38,7 +38,7 @@ return {
                 pickers = {
                     find_files = {
                         hidden = true,
-                        path_display = { "smart" },
+                        path_display = { "" },
                     },
                     buffers = {
                         path_display = { "smart" },
@@ -61,6 +61,13 @@ return {
             vim.keymap.set("n", "<leader>gl", builtin.git_files, { desc = "[Telescope] Git Files" })
             -- git status
             vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[Telescope] Git status" })
+            -- git diff against main branch
+            vim.keymap.set("n", "<leader>gr", function()
+                builtin.find_files({
+                    cwd = vim.fn.getcwd(),
+                    find_command = { 'git', 'diff', '--name-only', 'origin/main' },
+                })
+            end, { desc = "[Telescope] Git changes against main" })
             -- search input without telescope prompti
             vim.keymap.set("n", "<leader>ps", function()
                 builtin.grep_string({ search = vim.fn.input("Grep > ") })
